@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slime : MonoBehaviour
+public class Slime : Enemigo
 {
     [SerializeField] private Transform[] waypoints;
     [SerializeField] private float velocidadPatrulla;
@@ -74,5 +74,17 @@ public class Slime : MonoBehaviour
             SistemaVidas sistemaVidasPlayer = elOtro.gameObject.GetComponent<SistemaVidas>();
             sistemaVidasPlayer.RecibirDano(danoAtaque);
         }
+    }
+
+    protected override void Atacar()
+    {
+        Debug.Log("Slime ataca");
+    }
+
+    protected override void Perseguir()
+    {
+        base.Perseguir();
+        //Muevete
+        //Si llegas a X distancia ataca
     }
 }

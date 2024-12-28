@@ -76,8 +76,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8035828385450434178}
+  - component: {fileID: 6275347897806890224}
+  - component: {fileID: 7230158885700735892}
+  - component: {fileID: -3749929410101904167}
+  - component: {fileID: -3185872460337736546}
   - component: {fileID: 6205489951199685850}
-  - component: {fileID: 5635486487642468432}
   - component: {fileID: 2047524748129340930}
   - component: {fileID: 7344111704989211058}
   - component: {fileID: 1740872711931674011}
@@ -105,6 +108,55 @@ Transform:
   - {fileID: 7232371712004284443}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6275347897806890224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7953307375546898269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ff67f739cd07541b8c2e5d188987a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7230158885700735892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7953307375546898269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d20827c9a4d7b47a5eed4a40aabf49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  route: {fileID: 0}
+--- !u!114 &-3749929410101904167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7953307375546898269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5074cc24ba3e74d4eb0b3ad1e50ee911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3185872460337736546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7953307375546898269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28890e1843fc724a91e7837c8e57ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &6205489951199685850
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -157,27 +209,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5635486487642468432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7953307375546898269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7761c442eafe90a4bbf25c0acbaf3c59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  velocidadPatrulla: 3
-  danoAtaque: 20
 --- !u!114 &2047524748129340930
 MonoBehaviour:
   m_ObjectHideFlags: 0
