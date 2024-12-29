@@ -6,13 +6,17 @@ public class AttackState : State<EnemyController>
 {
     [SerializeField] private float attackDistance;
     [SerializeField] private float timeBetweenAttacks;
+    [SerializeField] private Enemigo enemigo;
 
     private float timer;
     private Transform target;
+    private Animator anim;
 
     public override void OnEnterState(EnemyController controlador)
     {
         base.OnEnterState(controlador);
+        anim = GetComponent<Animator>();
+        
         timer = timeBetweenAttacks; //Para que ataque nada más entrar
     }
 
@@ -21,7 +25,8 @@ public class AttackState : State<EnemyController>
         timer += Time.deltaTime;
         if (timer > timeBetweenAttacks)
         {
-            Debug.Log("Te ataco");
+            //Debug.Log("Te ataco");
+            enemigo.Atacar();
             timer = 0f;
         }
 
@@ -43,4 +48,5 @@ public class AttackState : State<EnemyController>
     {
         
     }
+
 }

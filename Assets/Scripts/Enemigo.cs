@@ -8,19 +8,21 @@ public abstract class Enemigo : MonoBehaviour
 
     protected float Vida { get => vida; set => vida = value; }
 
-    protected abstract void Atacar(); //No está clara la forma de atacar (cambia para cada uno)
+    public abstract void Atacar(); //No está clara la forma de atacar (cambia para cada uno)
     //Como no todos atacan igual, la pongo abstracta y luego en cada script indico como lo hago
+    //Si tuviesen parte en comun todos sería virtual
 
-    protected virtual void Perseguir() //Hay una parte que es común a todos los enemigos
+    public abstract void Perseguir();
+
+    public virtual void Morir(float tiempoDestruccion)
     {
-        //1. Calcular durección al objetivo
-        //2. Disponernos a movernos en esa direccion.
-        //En este caso como el mago no gira lo unico comun seria orientarse hacia el objetivo y pasar a 
-        //atacar cuand esté a cierta distancia (si la distancia cambia según el enemigo ponerlo en cada uno)
+        Debug.Log("Muerto");
+        Invoke("Destruir", tiempoDestruccion);
     }
 
-    protected void TakeDamage(float damage)
+    protected void Destruir()
     {
-
+        Destroy(this.gameObject);
     }
+    
 }

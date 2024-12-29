@@ -5,13 +5,17 @@ using UnityEngine;
 public class SistemaVidas : MonoBehaviour
 {
     [SerializeField] private float vidas;
-    
-    public void RecibirDano(float danoRecibido)
+    [SerializeField] private Enemigo enemigo;
+    private float tiempoDestruccion;
+
+
+    public void RecibirDano(float danhoRecibido)
     {
-        vidas -= danoRecibido;
-        if(vidas <= 0)
+        vidas -= danhoRecibido;
+        if (vidas <= 0)
         {
-            Destroy(this.gameObject);
+            enemigo.Morir(tiempoDestruccion);
         }
+
     }
 }

@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Slime : Enemigo
 {
-    [SerializeField] private Transform[] waypoints;
-    [SerializeField] private float velocidadPatrulla;
+    //[SerializeField] private Transform[] waypoints;
+    //[SerializeField] private float velocidadPatrulla;
     [SerializeField] private float danoAtaque;
-    private Vector3 destinoActual;
-    private int indiceActual = 0;
+
+    private Animator anim;
+    //private Vector3 destinoActual;
+    //private int indiceActual = 0;
     // Start is called before the first frame update
     void Start()
     {
-        destinoActual = waypoints[indiceActual].position;
-        StartCoroutine(Patrulla());
+        anim = GetComponent<Animator>();
+        //destinoActual = waypoints[indiceActual].position;
+        //StartCoroutine(Patrulla());
         //Lo hago tipo corrutina para que no se siga moviendo al llegar al destino
     }
 
@@ -23,45 +26,45 @@ public class Slime : Enemigo
 
     }
 
-    IEnumerator Patrulla()
-    {
-        while (true)
-        {
-            while (transform.position != destinoActual)
-            {
-                //Espacio recorrido por unidad de tiempo = velocidad * tiempo
-                transform.position = Vector3.MoveTowards(transform.position, destinoActual, velocidadPatrulla * Time.deltaTime);
-                yield return null; //Vuelve lo más rápido posible para evitar cortes
-            }
-            //Cuando llego salgo del bucle y cambio el destino
-            NuevoDestino();
-        }
+    //IEnumerator Patrulla()
+    //{
+    //    while (true)
+    //    {
+    //        while (transform.position != destinoActual)
+    //        {
+    //            //Espacio recorrido por unidad de tiempo = velocidad * tiempo
+    //            transform.position = Vector3.MoveTowards(transform.position, destinoActual, velocidadPatrulla * Time.deltaTime);
+    //            yield return null; //Vuelve lo más rápido posible para evitar cortes
+    //        }
+    //        //Cuando llego salgo del bucle y cambio el destino
+    //        NuevoDestino();
+    //    }
 
-    }
+    //}
 
-    private void NuevoDestino()
-    {
-        indiceActual++;
-        if (indiceActual >= waypoints.Length)
-        {
-            indiceActual = 0;
-        }
-        destinoActual = waypoints[indiceActual].position;
-        EnfocarDestino(); 
-    }
+    //private void NuevoDestino()
+    //{
+    //    indiceActual++;
+    //    if (indiceActual >= waypoints.Length)
+    //    {
+    //        indiceActual = 0;
+    //    }
+    //    destinoActual = waypoints[indiceActual].position;
+    //    EnfocarDestino(); 
+    //}
 
-    private void EnfocarDestino()
-    {
-        //Para orientar al personaje hacia el destino
-        if(destinoActual.x > transform.position.x)
-        {
-            transform.localScale = Vector3.one; //(1, 1, 1)
-        }
-        else
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-    }
+    //private void EnfocarDestino()
+    //{
+    //    //Para orientar al personaje hacia el destino
+    //    if(destinoActual.x > transform.position.x)
+    //    {
+    //        transform.localScale = Vector3.one; //(1, 1, 1)
+    //    }
+    //    else
+    //    {
+    //        transform.localScale = new Vector3(-1, 1, 1);
+    //    }
+    //}
 
     private void OnTriggerEnter2D(Collider2D elOtro)
     {
@@ -76,15 +79,23 @@ public class Slime : Enemigo
         }
     }
 
-    protected override void Atacar()
+    public override void Atacar()
     {
-        Debug.Log("Slime ataca");
+        Debug.Log("Ataco");
+        anim.SetBool("atacando", true);
     }
 
-    protected override void Perseguir()
+    public override void Perseguir()
     {
-        base.Perseguir();
-        //Muevete
-        //Si llegas a X distancia ataca
+        Debug.Log("Persigo");
+        anim.SetBool("atacando", false);
+        //anim.SetBool("sorpresa", true);
+    }
+
+    public override void Morir(float tiempoDestruccion)
+    {
+        tiempoDestruccion = 0.1f;
+        base.Morir(tiempoDestruccion);
+        //anim.SetTrigger("explosion");
     }
 }

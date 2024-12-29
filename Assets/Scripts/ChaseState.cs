@@ -7,10 +7,15 @@ public class ChaseState : State<EnemyController>
     private Transform target;
     [SerializeField] private float chaseVelocity;
     [SerializeField] private float stoppingDistance;
+    [SerializeField] private Enemigo enemigo;
+
+    private Animator anim;
     public override void OnEnterState(EnemyController controlador)
     {
         base.OnEnterState(controlador);
-        Debug.Log("Persigo");
+        anim = GetComponent<Animator>();
+        enemigo.Perseguir();
+        //Debug.Log("Persigo");
     }
 
     private void OnTriggerEnter2D(Collider2D elOtro)
@@ -24,7 +29,8 @@ public class ChaseState : State<EnemyController>
     public override void OnUpdateState()
     {
         transform.position = Vector3.MoveTowards(transform.position, target.position, chaseVelocity * Time.deltaTime);
-        
+        EnfocarDestino();
+
         //Si me acerco hasta stopping distance cambio de estado
         if (Vector3.Distance(transform.position, target.position) <= stoppingDistance)
         {
@@ -42,6 +48,19 @@ public class ChaseState : State<EnemyController>
         if (elOtro.TryGetComponent(out Player player)) //Establezco quien es mi objetivo
         {
             controller.ChangeState(controller.PatrolState);
+        }
+    }
+
+    private void EnfocarDestino()
+    {
+        //Para orientar al personaje hacia el destino
+        if (target.position.x > transform.position.x)
+        {
+            transform.localScale = Vector3.one; //(1, 1, 1)
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
         }
     }
 }

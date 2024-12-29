@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Murcielago : Enemigo
+public class Murcielago : MonoBehaviour
 {
     [SerializeField] private Transform[] waypoints;
     [SerializeField] private float velocidadPatrulla;
@@ -76,15 +76,13 @@ public class Murcielago : Enemigo
         }
     }
 
-    protected override void Atacar()
-    {
-        Debug.Log("Murcielago ataca");
-    }
+    //public override void Atacar()
+    //{
+    //    //throw new System.NotImplementedException();
+    //}
 
-    protected override void Perseguir()
-    {
-        base.Perseguir();
-        //Muevete
-        //Si llegas a X distancia ataca
-    }
+    //public override void Perseguir()
+    //{
+    //    //throw new System.NotImplementedException();
+    //}
 }

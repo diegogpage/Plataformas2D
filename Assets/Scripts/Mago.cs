@@ -53,14 +53,18 @@ public class Mago : Enemigo
         }
     }
 
-    protected override void Atacar()
+    public override void Atacar()
     {
-        Debug.Log("Mago ataca");
+        //throw new System.NotImplementedException();
     }
 
-    protected override void Perseguir()
+    public override void Perseguir()
     {
-        base.Perseguir();
-        //Si llegas a X distancia ataca
+        //throw new System.NotImplementedException();
+    }
+
+    public override void Morir(float tiempoDestruccion)
+    {
+        //throw new System.NotImplementedException();
     }
 }

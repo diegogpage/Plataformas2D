@@ -12,10 +12,13 @@ public class PatrolState : State<EnemyController>
 
     private Vector3 currentDestination;
     private int currentDestinationIndex;
+    private Animator anim;
 
     public override void OnEnterState(EnemyController controlador)
     {
         base.OnEnterState(controlador);
+        anim = GetComponent<Animator>();
+
         foreach (Transform j in route)
         {
             //Recorro route y añado la posicion de cada punto al listado
@@ -25,6 +28,7 @@ public class PatrolState : State<EnemyController>
         currentDestination = listadoPuntos[currentDestinationIndex];
         Debug.Log("Patrullo");
 
+        //anim.SetBool("sorpresa", false);
     }
 
     public override void OnUpdateState()
@@ -35,6 +39,7 @@ public class PatrolState : State<EnemyController>
         if (transform.position == currentDestination)
         {
             CalculateNewDestination();
+            EnfocarDestino();
         }
     }
 
@@ -64,6 +69,19 @@ public class PatrolState : State<EnemyController>
         if(elOtro.TryGetComponent(out Player player)) //Miro si tiene el script de player
         {
             controller.ChangeState(controller.ChaseState);
+        }
+    }
+
+    private void EnfocarDestino()
+    {
+        //Para orientar al personaje hacia el destino
+        if (currentDestination.x > transform.position.x)
+        {
+            transform.localScale = Vector3.one; //(1, 1, 1)
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
         }
     }
 }
