@@ -9,58 +9,33 @@ public class Mago : Enemigo
     [SerializeField] private Transform puntoSpawn;
     [SerializeField] private float tiempoAtaque;
     [SerializeField] private float danhoAtaque;
+    [SerializeField] private Player target;
     private Animator anim;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
-        StartCoroutine(RutinaAtaque());
+        //StartCoroutine(RutinaAtaque());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        EnfocarDestino();    
     }
 
-    IEnumerator RutinaAtaque()
-    {
-        while (true) //Bucle infinito
-        {
-            anim.SetTrigger("atacar"); //Pongo la animación
-            yield return new WaitForSeconds(tiempoAtaque);
-        }
-    }
-
+    //Lanzo desde animacion
     private void LanzarBola()
     {
-        //Desde un evento en la animación instancio las bolas
         Instantiate(bolaFuegoPrefab, puntoSpawn.position, transform.rotation);
         //Las saco con la rotación del mago por si este mira a la izquierda o a la derecha
     }
 
-    private void OnTriggerEnter2D(Collider2D elOtro)
-    {
-        if (elOtro.gameObject.CompareTag("DeteccionPlayer"))
-        {
-            Debug.Log("Player detectado");
-        }
-        else if (elOtro.gameObject.CompareTag("PlayerHitBox"))
-        {
-            SistemaVidas sistemaVidasPlayer = elOtro.gameObject.GetComponent<SistemaVidas>();
-            sistemaVidasPlayer.RecibirDano(danhoAtaque);
-        }
-    }
-
-    public override void Atacar()
-    {
-        //throw new System.NotImplementedException();
-    }
-
     public override void Perseguir()
     {
-        //throw new System.NotImplementedException();
+        Debug.Log("Te veo llegar");
     }
 
     public override void Morir(float tiempoDestruccion)
@@ -68,4 +43,23 @@ public class Mago : Enemigo
         //throw new System.NotImplementedException();
     }
 
+    public override void Atacar()
+    {
+        anim.SetTrigger("atacar"); //Lanzo desde aquí para que vaya enfocando al jugador
+        Debug.Log("Lanzo");
+    }
+
+
+    private void EnfocarDestino()
+    {
+        //Para orientar al personaje hacia el destino
+        if (target.transform.position.x > transform.position.x)
+        {
+            transform.localScale = Vector3.one; //(1, 1, 1)
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+    }
 }

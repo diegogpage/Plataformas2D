@@ -25,7 +25,6 @@ public class AttackState : State<EnemyController>
         timer += Time.deltaTime;
         if (timer > timeBetweenAttacks)
         {
-            //Debug.Log("Te ataco");
             enemigo.Atacar();
             timer = 0f;
         }

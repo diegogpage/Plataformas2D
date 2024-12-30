@@ -33,6 +33,7 @@ public class ChaseState : State<EnemyController>
 
     public override void OnUpdateState()
     {
+
         if (isBat)
         {
             MovimientoLibre();
