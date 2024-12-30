@@ -9,12 +9,14 @@ public class Slime : Enemigo
     [SerializeField] private float danoAtaque;
 
     private Animator anim;
+    private bool atacando;
     //private Vector3 destinoActual;
     //private int indiceActual = 0;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        atacando = false;
         //destinoActual = waypoints[indiceActual].position;
         //StartCoroutine(Patrulla());
         //Lo hago tipo corrutina para que no se siga moviendo al llegar al destino
@@ -76,18 +78,22 @@ public class Slime : Enemigo
         {
             SistemaVidas sistemaVidasPlayer = elOtro.gameObject.GetComponent<SistemaVidas>();
             sistemaVidasPlayer.RecibirDano(danoAtaque);
+            Debug.Log("toco");
         }
     }
 
     public override void Atacar()
     {
         Debug.Log("Ataco");
+        atacando = true;
         anim.SetBool("atacando", true);
+
     }
 
     public override void Perseguir()
     {
         Debug.Log("Persigo");
+        //atacando = false;
         anim.SetBool("atacando", false);
         //anim.SetBool("sorpresa", true);
     }

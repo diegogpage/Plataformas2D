@@ -129,6 +129,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7828667026395348892}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6913411661832243561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 616936903052245087}
+  m_Layer: 0
+  m_Name: PuntoAtaque
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &616936903052245087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6913411661832243561}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.7, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8035828385450434178}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7256016189176009263
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7232371712004284443}
   - component: {fileID: 3006469252095373417}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Deteccion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +308,7 @@ GameObject:
   - component: {fileID: 7344111704989211058}
   - component: {fileID: 1740872711931674011}
   - component: {fileID: 3511854371477448029}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Murcielago
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,6 +330,7 @@ Transform:
   m_Children:
   - {fileID: 7232371712004284443}
   - {fileID: 7828667026395348892}
+  - {fileID: 616936903052245087}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6275347897806890224
@@ -340,7 +372,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseVelocity: 3
-  stoppingDistance: 1.5
+  stoppingDistance: 1
+  enemigo: {fileID: 8783065580497453291}
 --- !u!114 &-3185872460337736546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,8 +386,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28890e1843fc724a91e7837c8e57ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 1.5
+  attackDistance: 1
   timeBetweenAttacks: 0.5
+  enemigo: {fileID: 8783065580497453291}
 --- !u!212 &6205489951199685850
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -419,8 +453,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 178d2481d713e1443a92c9a2f015f206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidas: 40
-  danoAtaque: 0
+  vida: 0
+  danhoAtaque: 10
+  puntoAtaque: {fileID: 616936903052245087}
+  radioAtaque: 0.8
+  queEsDanhable:
+    serializedVersion: 2
+    m_Bits: 512
+  player: {fileID: 0}
 --- !u!114 &2047524748129340930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,6 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vidas: 40
+  enemigo: {fileID: 8783065580497453291}
 --- !u!58 &7344111704989211058
 CircleCollider2D:
   m_ObjectHideFlags: 0

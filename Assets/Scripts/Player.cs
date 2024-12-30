@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,9 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
     private float inputH;
+
+    [SerializeField] private float vidaPlayer;
+
     [Header("Sistema de movimiento")]
     [SerializeField] private Transform posicionPies;
     [SerializeField] private float velocidad;
@@ -36,6 +40,17 @@ public class Player : MonoBehaviour
         Saltar();
 
         LanzarAtaque();
+
+        Muerte();
+
+    }
+
+    private void Muerte()
+    {
+        if (vidaPlayer <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void LanzarAtaque()
@@ -105,5 +120,10 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(puntoAtaque.position, radioAtaque);
+    }
+
+    public void quitarVidaPlayer(float danho)
+    {
+        vidaPlayer -= danho;
     }
 }

@@ -14,6 +14,7 @@ public class SistemaVidas : MonoBehaviour
         vidas -= danhoRecibido;
         if (vidas <= 0)
         {
+            Debug.Log("Morido");
             enemigo.Morir(tiempoDestruccion);
         }
 

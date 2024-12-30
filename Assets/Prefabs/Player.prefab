@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4478706809459864267}
   - component: {fileID: 6960051367266687109}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Deteccion
   m_TagString: DeteccionPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4478706809459864267
 Transform:
   m_ObjectHideFlags: 0
@@ -76,7 +76,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1410251485676943750}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PuntoAtaque
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7640436759864262030}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Pies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,12 +139,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8660740394562638738}
   - component: {fileID: 7598630468864039643}
-  - component: {fileID: 420480707716337426}
   - component: {fileID: 2685207010608553213}
   - component: {fileID: 3751232280350292654}
   - component: {fileID: 8040396549075469044}
   - component: {fileID: 920958734103537834}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Player
   m_TagString: PlayerHitBox
   m_Icon: {fileID: 0}
@@ -181,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd1b8ff6732bac43bd1c51e0c1ce2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vidaPlayer: 80
   posicionPies: {fileID: 7640436759864262030}
   velocidad: 7
   fuerzaSalto: 18
@@ -194,19 +194,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   danhoAtaque: 20
---- !u!114 &420480707716337426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6099294778260880033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2403afd0502a83947ae26cede5555b16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidas: 100
 --- !u!212 &2685207010608553213
 SpriteRenderer:
   m_ObjectHideFlags: 0

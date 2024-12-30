@@ -68,6 +68,7 @@ public class PatrolState : State<EnemyController>
     {
         if(elOtro.TryGetComponent(out Player player)) //Miro si tiene el script de player
         {
+            Debug.Log("visto");
             controller.ChangeState(controller.ChaseState);
         }
     }
