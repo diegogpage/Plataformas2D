@@ -23,25 +23,10 @@ public class Bat : Enemigo
         
     }
 
-    //private void OnTriggerEnter2D(Collider2D elOtro)
-    //{
-    //    if (elOtro.gameObject.CompareTag("DeteccionPlayer"))
-    //    {
-    //        Debug.Log("Player detectado");
-    //    }
-    //    else if (elOtro.gameObject.CompareTag("PlayerHitBox"))
-    //    {
-    //        SistemaVidas sistemaVidasPlayer = elOtro.gameObject.GetComponent<SistemaVidas>();
-    //        sistemaVidasPlayer.RecibirDano(danoAtaque);
-    //        Atacar();
-    //    }
-    //}
 
     public override void Atacar()
     {
         anim.SetTrigger("atacar");
-        //SistemaVidas sistemaVidasPlayer = elOtro.gameObject.GetComponent<SistemaVidas>();
-        //sistemaVidasPlayer.RecibirDano(danoAtaque);
     }
 
     //Se lanza desde evento de animación
@@ -52,8 +37,6 @@ public class Bat : Enemigo
 
         foreach (Collider2D item in collidersTocados)
         {
-            //SistemaVidas sistemaVidasEnemigos = item.gameObject.GetComponent<SistemaVidas>();
-            //sistemaVidasEnemigos.RecibirDano(danhoAtaque);
             player.quitarVidaPlayer(danhoAtaque);
         }
 
@@ -70,9 +53,9 @@ public class Bat : Enemigo
         base.Morir(tiempoDestruccion);
         anim.SetTrigger("explosion");
     }
-    
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawSphere(puntoAtaque.position, radioAtaque);
-    }
+
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawSphere(puntoAtaque.position, radioAtaque);
+    //}
 }

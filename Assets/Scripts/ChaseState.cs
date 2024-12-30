@@ -10,12 +10,17 @@ public class ChaseState : State<EnemyController>
     [SerializeField] private Enemigo enemigo;
 
     private Animator anim;
+    private bool isBat;
+
+
     public override void OnEnterState(EnemyController controlador)
     {
         base.OnEnterState(controlador);
         anim = GetComponent<Animator>();
         enemigo.Perseguir();
-        //Debug.Log("Persigo");
+
+        //Compruebo si es bat o no para congelar movimiento en Y
+        isBat = GetComponent<Bat>() != null;
     }
 
     private void OnTriggerEnter2D(Collider2D elOtro)
@@ -28,7 +33,15 @@ public class ChaseState : State<EnemyController>
 
     public override void OnUpdateState()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target.position, chaseVelocity * Time.deltaTime);
+        if (isBat)
+        {
+            MovimientoLibre();
+        }
+        else
+        {
+            MovimientoEnX();
+        }
+
         EnfocarDestino();
 
         //Si me acerco hasta stopping distance cambio de estado
@@ -62,5 +75,16 @@ public class ChaseState : State<EnemyController>
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
+    }
+
+    private void MovimientoLibre() //Para el murcielago
+    {
+        transform.position = Vector3.MoveTowards(transform.position, target.position, chaseVelocity * Time.deltaTime);
+    }
+
+    private void MovimientoEnX() //Para el slime
+    {
+        Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, transform.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, chaseVelocity * Time.deltaTime);
     }
 }

@@ -7,6 +7,8 @@ public class PatrolState : State<EnemyController>
 {
     [SerializeField] private Transform route;
     [SerializeField] private float patrolVelocity;
+    [SerializeField] private Player player;
+    [SerializeField] private float detectionDistance;
 
     private List<Vector3> listadoPuntos = new List<Vector3>();
 
@@ -41,6 +43,11 @@ public class PatrolState : State<EnemyController>
             CalculateNewDestination();
             EnfocarDestino();
         }
+
+        if (Vector3.Distance(transform.position, player.transform.position) <= detectionDistance)
+        {
+            controller.ChangeState(controller.AttackState);
+        }
     }
 
     private void CalculateNewDestination()
@@ -64,14 +71,6 @@ public class PatrolState : State<EnemyController>
         currentDestinationIndex = 0;
     }
 
-    private void OnTriggerEnter2D(Collider2D elOtro)
-    {
-        if(elOtro.TryGetComponent(out Player player)) //Miro si tiene el script de player
-        {
-            Debug.Log("visto");
-            controller.ChangeState(controller.ChaseState);
-        }
-    }
 
     private void EnfocarDestino()
     {

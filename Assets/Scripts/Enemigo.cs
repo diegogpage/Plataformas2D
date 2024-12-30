@@ -16,7 +16,6 @@ public abstract class Enemigo : MonoBehaviour
 
     public virtual void Morir(float tiempoDestruccion)
     {
-        Debug.Log("Muerto");
         Invoke("Destruir", tiempoDestruccion);
     }
 

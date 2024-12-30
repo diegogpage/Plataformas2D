@@ -6358,8 +6358,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28890e1843fc724a91e7837c8e57ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 0.5
-  timeBetweenAttacks: 0.5
+  attackDistance: 0.7
+  timeBetweenAttacks: 1
   enemigo: {fileID: 580681108}
 --- !u!114 &580681112
 MonoBehaviour:
@@ -6374,7 +6374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseVelocity: 3
-  stoppingDistance: 0.5
+  stoppingDistance: 0.7
   enemigo: {fileID: 580681108}
 --- !u!114 &580681113
 MonoBehaviour:
@@ -6390,6 +6390,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   route: {fileID: 1585450856}
   patrolVelocity: 1
+  player: {fileID: 1770500917}
+  detectionDistance: 4
 --- !u!114 &580681114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17589,17 +17591,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &2047686884 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8783065580497453291, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
-  m_PrefabInstance: {fileID: 5123017204791674674}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 178d2481d713e1443a92c9a2f015f206, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2091378087
 GameObject:
   m_ObjectHideFlags: 0
@@ -17778,7 +17769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1223816293515879987, guid: 45b2c2c09eeb3a2419e8f7e1b968fd99, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1243987513926875762, guid: 45b2c2c09eeb3a2419e8f7e1b968fd99, type: 3}
       propertyPath: vidas
@@ -17791,6 +17782,10 @@ PrefabInstance:
     - target: {fileID: 1763299674792053995, guid: 45b2c2c09eeb3a2419e8f7e1b968fd99, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763299674792053995, guid: 45b2c2c09eeb3a2419e8f7e1b968fd99, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2670293858115638948, guid: 45b2c2c09eeb3a2419e8f7e1b968fd99, type: 3}
       propertyPath: m_Constraints
@@ -17839,6 +17834,26 @@ PrefabInstance:
     - target: {fileID: 5691871309538591368, guid: 45b2c2c09eeb3a2419e8f7e1b968fd99, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678786218470774265, guid: 45b2c2c09eeb3a2419e8f7e1b968fd99, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1770500917}
+    - target: {fileID: 7678786218470774265, guid: 45b2c2c09eeb3a2419e8f7e1b968fd99, type: 3}
+      propertyPath: danhoAtaque
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678786218470774265, guid: 45b2c2c09eeb3a2419e8f7e1b968fd99, type: 3}
+      propertyPath: puntoAtaque
+      value: 
+      objectReference: {fileID: 580681110}
+    - target: {fileID: 7678786218470774265, guid: 45b2c2c09eeb3a2419e8f7e1b968fd99, type: 3}
+      propertyPath: radioAtaque
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678786218470774265, guid: 45b2c2c09eeb3a2419e8f7e1b968fd99, type: 3}
+      propertyPath: queEsDanhable.m_Bits
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 7678786218470774265, guid: 45b2c2c09eeb3a2419e8f7e1b968fd99, type: 3}
       propertyPath: waypoints.Array.data[0]
@@ -17937,45 +17952,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -3749929410101904167, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
-      propertyPath: enemigo
+    - target: {fileID: 7230158885700735892, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
+      propertyPath: player
       value: 
-      objectReference: {fileID: 2047686884}
-    - target: {fileID: -3749929410101904167, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
-      propertyPath: stoppingDistance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -3185872460337736546, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
-      propertyPath: enemigo
-      value: 
-      objectReference: {fileID: 2047686884}
-    - target: {fileID: -3185872460337736546, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
-      propertyPath: attackDistance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -3185872460337736546, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
-      propertyPath: patrolDistance
+      objectReference: {fileID: 1770500917}
+    - target: {fileID: 7230158885700735892, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
+      propertyPath: detectionDistance
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2047524748129340930, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
-      propertyPath: enemigo
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7256016189176009263, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7953307375546898269, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
       propertyPath: m_Name
       value: Murcielago
       objectReference: {fileID: 0}
     - target: {fileID: 7953307375546898269, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7953307375546898269, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8035828385450434178, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18018,41 +18009,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8783065580497453291, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
-      propertyPath: vidas
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8783065580497453291, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1770500917}
-    - target: {fileID: 8783065580497453291, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8783065580497453291, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
-      propertyPath: danoAtaque
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8783065580497453291, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
-      propertyPath: danhoAtaque
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8783065580497453291, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
-      propertyPath: chaseDistance
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8783065580497453291, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
-      propertyPath: attackDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8783065580497453291, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
-      propertyPath: timeBetweenAttacks
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8783065580497453291, guid: 94d774a56296e114bb348b5e8447d72b, type: 3}
-      propertyPath: queEsDanhable.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
