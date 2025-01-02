@@ -1,16 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class BolaFuego : MonoBehaviour
 {
     private Rigidbody2D rb;
     [SerializeField] private float impulsoDisparo;
+    private float timer;
 
-    // Start is called before the first frame update
-    void Start()
+    //Creo la pool y hago que se pueda acceder desde otro script
+    //desde este accedo con myPool y desde el otro con MyPool
+    private ObjectPool<BolaFuego> myPoolBolas;
+
+    public ObjectPool<BolaFuego> MyPoolBolas { get => myPoolBolas; set => myPoolBolas = value; }
+
+
+    //Uso OnEnable para que ocurra siempre que se active. Si lo dejo en start al reactivarlo no se le aplicaria fuerza
+    private void OnEnable()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.velocity = Vector3.zero; // Limpia cualquier velocidad residual
+        rb.angularVelocity = 0f;    // Limpia cualquier rotación previa
         //transform.forward --> mi eje z (azul)
         //transform.up --> mi eje y (verde)
         //transform.right --> mi eje x (rojo)
@@ -21,6 +32,21 @@ public class BolaFuego : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        timer += Time.deltaTime;
+
+        if (timer >= 4)
+        {
+            myPoolBolas.Release(this); //Aqui uso myPool porque estoy en este script
+            timer = 0;
+        }
     }
+
+    private void OnCollisionEnter2D(Collision2D elOtro)
+    {
+        if (elOtro.gameObject.CompareTag("Player"))
+        {
+            myPoolBolas.Release(this);
+        }
+    }
+
 }

@@ -33,6 +33,7 @@ public class AttackState : State<EnemyController>
         {
             controller.ChangeState(controller.ChaseState);
         }
+        EnfocarDestino();
     }
 
     private void OnTriggerEnter2D(Collider2D elOtro)
@@ -48,4 +49,16 @@ public class AttackState : State<EnemyController>
         
     }
 
+    private void EnfocarDestino()
+    {
+        //Para orientar al personaje hacia el destino
+        if (target.transform.position.x > transform.position.x)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+    }
 }

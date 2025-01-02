@@ -68,13 +68,13 @@ public class ChaseState : State<EnemyController>
     private void EnfocarDestino()
     {
         //Para orientar al personaje hacia el destino
-        if (target.position.x > transform.position.x)
+        if (target.transform.position.x > transform.position.x)
         {
-            transform.localScale = Vector3.one; //(1, 1, 1)
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 
