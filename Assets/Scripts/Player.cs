@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float vidaPlayer;
     [SerializeField] private GameObject[] cajas;
     private bool moviendo;
+    private float timer;
+    private float timerEscudo;
+    private bool defensa;
 
     [Header("Sistema de movimiento")]
     [SerializeField] private Transform posicionPies;
@@ -24,6 +27,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float radioAtaque;
     [SerializeField] private LayerMask queEsDanhable;
     [SerializeField] private float danhoAtaque;
+    [SerializeField] private Escudo escudo;
     private Animator anim;
 
     // Start is called before the first frame update
@@ -32,7 +36,14 @@ public class Player : MonoBehaviour
         //Uso rb porque es dynamic
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        
+        //Caja
         moviendo = false;
+        
+        //Escudo
+        escudo.gameObject.SetActive(false);
+        timerEscudo = 5f;
+        defensa = false;
     }
 
     // Update is called once per frame
@@ -47,6 +58,8 @@ public class Player : MonoBehaviour
         Muerte();
 
         MoverCaja();
+
+        ActivarEscudo();
     }
 
     private void Muerte()
@@ -135,6 +148,7 @@ public class Player : MonoBehaviour
     public void quitarVidaPlayer(float danho)
     {
         vidaPlayer -= danho;
+        Debug.Log("Me das");
     }
 
     private void MoverCaja()
@@ -162,6 +176,30 @@ public class Player : MonoBehaviour
         {
             quitarVidaPlayer(10);
         }
+    }
 
+    private void OnTriggerEnter2D(Collider2D elOtro)
+    {
+        if (elOtro.gameObject.CompareTag("Escudo"))
+        {
+            defensa = true;
+        }
+    }
+
+    private void ActivarEscudo()
+    {
+        if (defensa)
+        {
+            escudo.gameObject.SetActive(true);
+
+            timer += Time.deltaTime;
+            if (timer >= timerEscudo)
+            {
+                escudo.gameObject.SetActive(false);
+                defensa = false;
+                timer = 0;
+            }
+        }
+        
     }
 }
