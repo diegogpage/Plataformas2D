@@ -60,8 +60,8 @@ public class Slime : Enemigo
         base.Morir(tiempoDestruccion);
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawSphere(puntoAtaque.position, radioAtaque);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawSphere(puntoAtaque.position, radioAtaque);
+    //}
 }

@@ -30,7 +30,6 @@ public class PatrolState : State<EnemyController>
         currentDestination = listadoPuntos[currentDestinationIndex];
         Debug.Log("Patrullo");
 
-        //anim.SetBool("sorpresa", false);
     }
 
     public override void OnUpdateState()

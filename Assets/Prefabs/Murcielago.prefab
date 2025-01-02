@@ -327,6 +327,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   route: {fileID: 7828667026395348892}
   patrolVelocity: 1
+  player: {fileID: 0}
+  detectionDistance: 6
 --- !u!114 &-3749929410101904167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,7 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2403afd0502a83947ae26cede5555b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidas: 40
+  vidas: 20
   enemigo: {fileID: 8783065580497453291}
 --- !u!58 &7344111704989211058
 CircleCollider2D:

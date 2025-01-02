@@ -5,8 +5,8 @@ using UnityEngine.Pool;
 
 public class BolaFuego : MonoBehaviour
 {
-    private Rigidbody2D rb;
     [SerializeField] private float impulsoDisparo;
+    private Rigidbody2D rb;
     private float timer;
 
     //Creo la pool y hago que se pueda acceder desde otro script
@@ -27,6 +27,7 @@ public class BolaFuego : MonoBehaviour
         //transform.right --> mi eje x (rojo)
         //De esta forma si el mago está rotado y apunta hacia la izquierda, la bola se mueve hacia la izquierda
         rb.AddForce(transform.right * impulsoDisparo, ForceMode2D.Impulse);
+        timer = 0;
     }
 
     // Update is called once per frame

@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     private float inputH;
 
     [SerializeField] private float vidaPlayer;
+    [SerializeField] private GameObject[] cajas;
+    private bool moviendo;
 
     [Header("Sistema de movimiento")]
     [SerializeField] private Transform posicionPies;
@@ -30,6 +32,7 @@ public class Player : MonoBehaviour
         //Uso rb porque es dynamic
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        moviendo = false;
     }
 
     // Update is called once per frame
@@ -43,6 +46,7 @@ public class Player : MonoBehaviour
 
         Muerte();
 
+        MoverCaja();
     }
 
     private void Muerte()
@@ -73,6 +77,12 @@ public class Player : MonoBehaviour
         {
             SistemaVidas sistemaVidasEnemigos = item.gameObject.GetComponent<SistemaVidas>();
             sistemaVidasEnemigos.RecibirDano(danhoAtaque);
+
+            //if (item.TryGetComponent(out BolaFuego bolaFuego))
+            //{
+            //    Debug.Log("Rompo la bola");
+            //    Destroy(item.gameObject);
+            //}
         }
 
     }
@@ -125,5 +135,33 @@ public class Player : MonoBehaviour
     public void quitarVidaPlayer(float danho)
     {
         vidaPlayer -= danho;
+    }
+
+    private void MoverCaja()
+    {
+        moviendo = Input.GetKey(KeyCode.E);
+        //Rigidbody2D rb = cajas.gameObject.GetComponent<Rigidbody2D>();
+        for (int i = 0; i < cajas.Length; i++)
+        {
+            Rigidbody2D rb = cajas[i].gameObject.GetComponent<Rigidbody2D>();
+
+            if (moviendo)
+            {
+                rb.bodyType = RigidbodyType2D.Dynamic;
+            }
+            else
+            {
+                rb.bodyType = RigidbodyType2D.Static;
+            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D elOtro)
+    {
+        if (elOtro.gameObject.CompareTag("BolaFuego"))
+        {
+            quitarVidaPlayer(10);
+        }
+
     }
 }
