@@ -27,6 +27,7 @@ public class CambioEscena : MonoBehaviour
 
     private void LoadScene()
     {
-        SceneManager.LoadScene("SampleScene");
+        int escenaActual = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(escenaActual + 1);
     }
 }

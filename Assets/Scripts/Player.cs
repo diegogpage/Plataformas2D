@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     private float timer;
     private float timerEscudo;
     private bool defensa;
+    private int estrella;
 
     [Header("Sistema de movimiento")]
     [SerializeField] private Transform posicionPies;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float fuerzaSalto;
     [SerializeField] private float distanciaAlSuelo;
     [SerializeField] private LayerMask queEsSaltable;
+    private bool resbaladizo;
 
     [Header("Sistema de combate")]
     [SerializeField] private Transform puntoAtaque;
@@ -102,7 +104,7 @@ public class Player : MonoBehaviour
 
     private void Saltar()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && EstoyEnSuelo()) //Si no pongo nada quiere decir que estoy en suelo es true
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && EstoyEnSuelo()) //Si no pongo nada quiere decir que estoy en suelo es true
         {
             rb.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
             anim.SetTrigger("jump");
@@ -119,8 +121,24 @@ public class Player : MonoBehaviour
     private void Movimiento()
     {
         inputH = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(inputH * velocidad, rb.velocity.y);
-        //Multiplico solo en x para que no afecte a y. Además pongo rb.velocity.y y no 0 para respetarla en y
+
+        if (resbaladizo)
+        {
+            Vector2 targetVelocity = new Vector2(inputH * velocidad, rb.velocity.y);
+            rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, Time.deltaTime * 0.5f);
+
+            if (inputH == 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x * 1, rb.velocity.y); 
+            }
+
+        }
+        else
+        {
+            rb.velocity = new Vector2(inputH * velocidad, rb.velocity.y);
+            //Multiplico solo en x para que no afecte a y. Además pongo rb.velocity.y y no 0 para respetarla en y
+        }
+
 
         if (inputH != 0) //Hay movimiento
         {
@@ -154,7 +172,7 @@ public class Player : MonoBehaviour
     private void MoverCaja()
     {
         moviendo = Input.GetKey(KeyCode.E);
-        //Rigidbody2D rb = cajas.gameObject.GetComponent<Rigidbody2D>();
+
         for (int i = 0; i < cajas.Length; i++)
         {
             Rigidbody2D rb = cajas[i].gameObject.GetComponent<Rigidbody2D>();
@@ -176,6 +194,21 @@ public class Player : MonoBehaviour
         {
             quitarVidaPlayer(10);
         }
+
+        else if (elOtro.gameObject.CompareTag("Hielo"))
+        {
+            resbaladizo = true;
+            Debug.Log("Con hielo");
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D elOtro)
+    {
+        if (elOtro.gameObject.CompareTag("Hielo"))
+        {
+            resbaladizo = false;
+            Debug.Log("Sin hielo");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D elOtro)
@@ -183,6 +216,13 @@ public class Player : MonoBehaviour
         if (elOtro.gameObject.CompareTag("Escudo"))
         {
             defensa = true;
+            Destroy(elOtro.gameObject);
+        }
+
+        else if (elOtro.gameObject.CompareTag("Estrella"))
+        {
+            estrella++;
+            Destroy(elOtro.gameObject);
         }
     }
 
