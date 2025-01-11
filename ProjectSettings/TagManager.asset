@@ -16,6 +16,7 @@ TagManager:
   - Hielo
   - Muerte
   - Checkpoint
+  - Parar
   layers:
   - Default
   - TransparentFX

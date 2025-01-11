@@ -94,12 +94,6 @@ public class Player : MonoBehaviour
         {
             SistemaVidas sistemaVidasEnemigos = item.gameObject.GetComponent<SistemaVidas>();
             sistemaVidasEnemigos.RecibirDano(danhoAtaque);
-
-            //if (item.TryGetComponent(out BolaFuego bolaFuego))
-            //{
-            //    Debug.Log("Rompo la bola");
-            //    Destroy(item.gameObject);
-            //}
         }
 
     }
@@ -131,7 +125,7 @@ public class Player : MonoBehaviour
 
             if (inputH == 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x * 1, rb.velocity.y); 
+                rb.velocity = new Vector2(rb.velocity.x * 1, rb.velocity.y);
             }
 
         }
@@ -158,6 +152,7 @@ public class Player : MonoBehaviour
         {
             anim.SetBool("running", false);
         }
+
     }
 
     private void OnDrawGizmos()
@@ -168,7 +163,6 @@ public class Player : MonoBehaviour
     public void quitarVidaPlayer(float danho)
     {
         vidaPlayer -= danho;
-        Debug.Log("Me das");
     }
 
     private void MoverCaja()
@@ -200,7 +194,6 @@ public class Player : MonoBehaviour
         else if (elOtro.gameObject.CompareTag("Hielo"))
         {
             resbaladizo = true;
-            Debug.Log("Con hielo");
         }
     }
 
@@ -209,7 +202,6 @@ public class Player : MonoBehaviour
         if (elOtro.gameObject.CompareTag("Hielo"))
         {
             resbaladizo = false;
-            Debug.Log("Sin hielo");
         }
     }
 
@@ -229,14 +221,18 @@ public class Player : MonoBehaviour
 
         else if (elOtro.gameObject.CompareTag("Muerte"))
         {
-            Debug.Log("Muerto");
             player.transform.position = respawn.position;
         }
 
         else if (elOtro.gameObject.CompareTag("Checkpoint"))
         {
-            //Destroy(elOtro.gameObject);
             respawn.position = elOtro.transform.position;
+        }
+
+        else if (elOtro.gameObject.CompareTag("Parar"))
+        {
+            Rigidbody2D rb = player.gameObject.GetComponent<Rigidbody2D>();
+            rb.bodyType = RigidbodyType2D.Static;
         }
     }
 
