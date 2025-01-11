@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class CambioEscena : MonoBehaviour
+public class Checkpoint : MonoBehaviour
 {
+    private ParticleSystem particulas;
+
     // Start is called before the first frame update
     void Start()
     {
+        particulas = GetComponentInChildren<ParticleSystem>();
+        
+        if (particulas != null)
+        {
+            particulas.Stop();
+        }
         
     }
 
@@ -21,13 +28,11 @@ public class CambioEscena : MonoBehaviour
     {
         if (elOtro.gameObject.CompareTag("Player"))
         {
-            LoadScene();
+            if (particulas != null)
+            {
+                Debug.Log("Checkpoint cogido");
+                particulas.Play();
+            }
         }
-    }
-
-    private void LoadScene()
-    {
-        int escenaActual = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(escenaActual + 1);
     }
 }

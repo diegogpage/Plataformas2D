@@ -10,11 +10,13 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float vidaPlayer;
     [SerializeField] private GameObject[] cajas;
+    [SerializeField] private Player player;
     private bool moviendo;
     private float timer;
     private float timerEscudo;
     private bool defensa;
     private int estrella;
+    [SerializeField] private Transform respawn;
 
     [Header("Sistema de movimiento")]
     [SerializeField] private Transform posicionPies;
@@ -223,6 +225,18 @@ public class Player : MonoBehaviour
         {
             estrella++;
             Destroy(elOtro.gameObject);
+        }
+
+        else if (elOtro.gameObject.CompareTag("Muerte"))
+        {
+            Debug.Log("Muerto");
+            player.transform.position = respawn.position;
+        }
+
+        else if (elOtro.gameObject.CompareTag("Checkpoint"))
+        {
+            //Destroy(elOtro.gameObject);
+            respawn.position = elOtro.transform.position;
         }
     }
 

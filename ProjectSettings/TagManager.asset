@@ -14,6 +14,8 @@ TagManager:
   - Mago
   - Estrella
   - Hielo
+  - Muerte
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
