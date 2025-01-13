@@ -69,7 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   route: {fileID: 6182111095992868016}
   patrolVelocity: 1
-  player: {fileID: 0}
+  player: {fileID: 7598630468864039643, guid: 5b61c3202a5f36a428fd24fca93af72c, type: 3}
   detectionDistance: 4
 --- !u!114 &5744694914260073599
 MonoBehaviour:
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: 0
-  danhoAtaque: 10
+  danhoAtaque: 1
   puntoAtaque: {fileID: 5691871309538591368}
   radioAtaque: 1
   queEsDanhable:

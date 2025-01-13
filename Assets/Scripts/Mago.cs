@@ -9,7 +9,7 @@ public class Mago : Enemigo
 
     [SerializeField] private BolaFuego bolaFuegoPrefab;
     [SerializeField] private Transform puntoSpawn;
-    [SerializeField] private float danhoAtaque;
+    [SerializeField] private int danhoAtaque;
     [SerializeField] private Player target;
     private Animator anim;
 

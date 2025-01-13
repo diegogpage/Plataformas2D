@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bat : Enemigo
 {
-    [SerializeField] private float danhoAtaque;
+    [SerializeField] private int danhoAtaque;
     [SerializeField] private Transform puntoAtaque;
     [SerializeField] private float radioAtaque;
     [SerializeField] private LayerMask queEsDanhable;

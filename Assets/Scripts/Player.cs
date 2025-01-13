@@ -2,14 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
     private float inputH;
 
-    [SerializeField] private float vidaPlayer;
+    [SerializeField] private int vidaPlayer;
     [SerializeField] private GameObject[] cajas;
+    [SerializeField] private GameObject[] imgVidas;
     [SerializeField] private Player player;
     private bool moviendo;
     private float timer;
@@ -17,6 +19,7 @@ public class Player : MonoBehaviour
     private bool defensa;
     private int estrella;
     [SerializeField] private Transform respawn;
+    
 
     [Header("Sistema de movimiento")]
     [SerializeField] private Transform posicionPies;
@@ -48,6 +51,9 @@ public class Player : MonoBehaviour
         escudo.gameObject.SetActive(false);
         timerEscudo = 5f;
         defensa = false;
+
+        //TP
+        estrella = 0;
     }
 
     // Update is called once per frame
@@ -66,11 +72,13 @@ public class Player : MonoBehaviour
         ActivarEscudo();
     }
 
+
     private void Muerte()
     {
         if (vidaPlayer <= 0)
         {
             Destroy(this.gameObject);
+            SceneManager.LoadScene("Muerte");
         }
     }
 
@@ -160,9 +168,10 @@ public class Player : MonoBehaviour
         Gizmos.DrawSphere(puntoAtaque.position, radioAtaque);
     }
 
-    public void quitarVidaPlayer(float danho)
+    public void quitarVidaPlayer(int danho)
     {
         vidaPlayer -= danho;
+        ActualizarVidas();
     }
 
     private void MoverCaja()
@@ -188,7 +197,8 @@ public class Player : MonoBehaviour
     {
         if (elOtro.gameObject.CompareTag("BolaFuego"))
         {
-            quitarVidaPlayer(10);
+            vidaPlayer--;
+            ActualizarVidas();
         }
 
         else if (elOtro.gameObject.CompareTag("Hielo"))
@@ -222,6 +232,8 @@ public class Player : MonoBehaviour
         else if (elOtro.gameObject.CompareTag("Muerte"))
         {
             player.transform.position = respawn.position;
+            vidaPlayer--;
+            ActualizarVidas();
         }
 
         else if (elOtro.gameObject.CompareTag("Checkpoint"))
@@ -249,7 +261,19 @@ public class Player : MonoBehaviour
                 defensa = false;
                 timer = 0;
             }
-        }
-        
+        }   
     }
+
+    private void ActualizarVidas()
+    {
+        for (int i = 0; i < vidaPlayer; i++)
+        {
+            imgVidas[i].SetActive(true);
+        }
+        for (int j = vidaPlayer; j < 8; j++)
+        {
+            imgVidas[j].SetActive(false);
+        }
+    }
+
 }

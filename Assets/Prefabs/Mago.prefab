@@ -263,7 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   route: {fileID: 2084486950528286235}
   patrolVelocity: 0
-  player: {fileID: 0}
+  player: {fileID: 7598630468864039643, guid: 5b61c3202a5f36a428fd24fca93af72c, type: 3}
   detectionDistance: 15
 --- !u!114 &5880029663337853518
 MonoBehaviour:
@@ -310,7 +310,7 @@ MonoBehaviour:
   vida: 0
   bolaFuegoPrefab: {fileID: 7365588268364778220, guid: 9e0b4b7523c1fbb4fa38d74bd0686a99, type: 3}
   puntoSpawn: {fileID: 2863243074146388317}
-  danhoAtaque: 20
+  danhoAtaque: 1
   target: {fileID: 0}
 --- !u!114 &8767083388802122843
 MonoBehaviour:

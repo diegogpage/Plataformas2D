@@ -179,10 +179,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Avanza por el mapa y vence a los enemigos para ganar\n\nHay algunos checkpoints
-    repartidos por el mapa que desprender\xE1n unos polvos verdes cuando los actives\n\nExiste
-    un power up de escudo que te har\xE1 indestructible durante 5 segundos\n\nEn
-    la primera parte del mapa hay 3 estrellas escondidas, \xBFlograr\xE1s recolectarlas?"
+  m_text: "Avanza por el mapa y vence a los enemigos para ganar\n\nExisten algunos
+    checkpoints repartidos por el mapa que guardar\xE1n tu posici\xF3n para cuando
+    mueras\n\nExiste un power up de escudo que te har\xE1 indestructible durante
+    5 segundos\n\nEn la primera parte del mapa hay 3 estrellas escondidas, \xBFlograr\xE1s
+    recolectarlas?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
